@@ -1,0 +1,20 @@
+{
+  "name": "@aifinpay/stellar-x402-workspace",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Workspace and documentation for the AiFinPay Stellar x402 Facilitator",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint:md": "markdownlint-cli2 \"**/*.md\" \"#node_modules\"",
+    "check": "npm run format:check && npm run lint:md"
+  },
+  "devDependencies": {
+    "markdownlint-cli2": "^0.18.1",
+    "prettier": "^3.6.2"
+  }
+}
