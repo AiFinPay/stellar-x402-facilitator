@@ -4,14 +4,14 @@ This page is the fastest route through the AiFinPay Stellar x402 Facilitator sub
 
 ## Review snapshot
 
-| Evaluation area              | AiFinPay position                                                                                                                                                                            | Primary evidence                                                                                                                         |
-| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| **Ecosystem value**          | Open-source, self-hostable Stellar x402 facilitator plus Bazaar discovery, MCP tooling and reusable conformance evidence                                                                     | [`SCF45_APPLICATION.md`](SCF45_APPLICATION.md) · [`RFP_COMPLIANCE_MATRIX.md`](RFP_COMPLIANCE_MATRIX.md)                                  |
+| Evaluation area | AiFinPay position | Primary evidence |
+| --- | --- | --- |
+| **Ecosystem value** | Open-source, self-hostable Stellar x402 facilitator plus Bazaar discovery, MCP tooling and reusable conformance evidence | [`SCF45_APPLICATION.md`](SCF45_APPLICATION.md) · [`RFP_COMPLIANCE_MATRIX.md`](RFP_COMPLIANCE_MATRIX.md) |
 | **Technical implementation** | Canonical `@x402/stellar` integration, explicit testnet/pubnet profiles, isolated signer boundary, durable idempotency, Bazaar/MCP/SDK layer, production observability and security controls | [`../ARCHITECTURE.md`](../ARCHITECTURE.md) · [`../SECURITY_MODEL.md`](../SECURITY_MODEL.md) · [`../THREAT_MODEL.md`](../THREAT_MODEL.md) |
-| **Team**                     | Five named delivery owners with explicit responsibilities plus finance governance; 32 award-funded person-weeks                                                                              | [`TEAM.md`](TEAM.md) · [`../../MAINTAINERS.md`](../../MAINTAINERS.md)                                                                    |
-| **Budget feasibility**       | Fixed **USD 90,000** request; USD 82,000 labor + capped USD 8,000 direct infrastructure; no marketing, incorporation, past-work reimbursement or separate Audit Bank fees                    | [`BUDGET.md`](BUDGET.md)                                                                                                                 |
-| **Deliverables**             | Four objective gates from setup through pubnet, each tied to reproducible evidence instead of narrative completion claims                                                                    | [`MILESTONES.md`](MILESTONES.md) · [`EVIDENCE_REGISTER.md`](EVIDENCE_REGISTER.md)                                                        |
-| **Execution risk**           | Named owner and observable trigger for each material technical, security, schedule and budget risk                                                                                           | [`RISK_REGISTER.md`](RISK_REGISTER.md)                                                                                                   |
+| **Team** | Four named delivery owners with explicit responsibilities plus finance governance; 32 award-funded person-weeks | [`TEAM.md`](TEAM.md) · [`../../MAINTAINERS.md`](../../MAINTAINERS.md) |
+| **Budget feasibility** | Fixed **USD 90,000** request; USD 82,000 labor + capped USD 8,000 direct infrastructure; no marketing, incorporation, past-work reimbursement or separate Audit Bank fees | [`BUDGET.md`](BUDGET.md) |
+| **Deliverables** | Four objective gates from setup through pubnet, each tied to reproducible evidence instead of narrative completion claims | [`MILESTONES.md`](MILESTONES.md) · [`EVIDENCE_REGISTER.md`](EVIDENCE_REGISTER.md) |
+| **Execution risk** | Named owner and observable trigger for each material technical, security, schedule and budget risk | [`RISK_REGISTER.md`](RISK_REGISTER.md) |
 
 ## What will actually be built
 
@@ -43,13 +43,12 @@ The project remains deliberately dependent on canonical Stellar/x402 packages ra
 
 ## Team and capacity
 
-| Owner            | Delivery responsibility                                                            |     Allocation |
-| ---------------- | ---------------------------------------------------------------------------------- | -------------: |
-| Pavlo Bolhar     | Facilitator/backend, deployment, observability, production release                 | 8 person-weeks |
-| Syed Hassan      | Stellar/x402 integration, conformance, payment-security logic, `upto` contribution | 8 person-weeks |
-| Pavel Svizinskiy | Bazaar, MCP, SDK helpers and reference integrations                                | 7 person-weeks |
-| Nick Staetskiy   | Search quality, abuse/relevance evaluation and reliability evidence                | 5 person-weeks |
-| Dmitry Buhaienko | Product acceptance, technical documentation, release evidence and SCF reporting    | 4 person-weeks |
+| Owner | Delivery responsibility | Allocation |
+| --- | --- | ---: |
+| Pavlo Bolhar | Facilitator/backend, deployment, observability, load/failover validation and production release | 8 person-weeks |
+| Syed Hassan | Stellar/x402 integration, conformance, payment-security logic, transaction evidence and `upto` contribution | 10 person-weeks |
+| Pavel Svizinskiy | Bazaar discovery/search, provenance controls, MCP, SDK helpers, abuse/relevance evaluation and reference integrations | 9 person-weeks |
+| Dmitry Buhaienko | Product acceptance, technical documentation, release evidence and SCF reporting | 5 person-weeks |
 
 **Total: 32 person-weeks over eight weeks = four FTE on average.**
 
@@ -57,15 +56,14 @@ Iryna Zavorotnia provides budget governance as internal support and is not charg
 
 ## USD 90,000 budget logic
 
-| Workstream                                               |         Amount |
-| -------------------------------------------------------- | -------------: |
-| Facilitator/backend/production operations                |     USD 22,000 |
-| Stellar/x402 integration and conformance                 |     USD 20,000 |
-| Bazaar/MCP/SDK/reference integrations                    |     USD 17,500 |
-| Search/reliability/evidence                              |     USD 12,500 |
-| Product/docs/release/SCF evidence                        |     USD 10,000 |
-| Direct development and validation infrastructure, capped |      USD 8,000 |
-| **Total**                                                | **USD 90,000** |
+| Workstream | Amount |
+| --- | ---: |
+| Facilitator/backend/production operations and reliability | USD 22,000 |
+| Stellar/x402 integration, conformance and transaction evidence | USD 25,000 |
+| Bazaar discovery/search, MCP/SDK and reference integrations | USD 22,500 |
+| Product/docs/release/SCF evidence | USD 12,500 |
+| Direct development and validation infrastructure, capped | USD 8,000 |
+| **Total** | **USD 90,000** |
 
 The schedule and budget are intentionally coupled: 32 named person-weeks fund the labor plan, infrastructure is separately capped, and 90% of the award is attached to working MVP/testnet/pubnet evidence rather than proposal documents.
 
