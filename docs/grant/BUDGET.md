@@ -8,14 +8,14 @@ The budget covers only future Stellar-specific delivery work required by the SCF
 
 The eight-week implementation plan contains **32 award-funded person-weeks** across four named delivery owners. That equals an average of four full-time-equivalent contributors during the build window. Finance governance is provided separately as internal company support and is not charged as technical labor.
 
-| Workstream | Owner | Person-weeks | Effective weekly rate | Amount | Deliverable mapping |
-| --- | --- | ---: | ---: | ---: | --- |
-| Facilitator backend, state, signer boundary, deployment, observability and load/failover validation | Pavlo Bolhar | 8 | USD 2,750 | **USD 22,000** | MVP, Testnet, Mainnet |
-| Stellar/x402 adapter, asset/auth handling, conformance, transaction evidence and `upto` contribution | Syed Hassan | 10 | USD 2,500 | **USD 25,000** | MVP, Testnet, Mainnet |
-| Bazaar discovery/search, provenance controls, MCP interface, SDK helpers, abuse/relevance evaluation and reference integrations | Pavel Svizinskiy | 9 | USD 2,500 | **USD 22,500** | MVP, Testnet, Mainnet |
-| Product acceptance, technical documentation, release evidence and SCF reporting | Dmitry Buhaienko | 5 | USD 2,500 | **USD 12,500** | All gates |
-| Direct development/test infrastructure: RPC, database, hosting, observability, CI/load-test resources and controlled production validation | Project infrastructure | n/a | documented actual costs, capped | **USD 8,000** | Testnet, Mainnet |
-| **Total** |  | **32** |  | **USD 90,000** |  |
+| Workstream                                                                                                                                 | Owner                  | Person-weeks |           Effective weekly rate |         Amount | Deliverable mapping   |
+| ------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------- | -----------: | ------------------------------: | -------------: | --------------------- |
+| Facilitator backend, state, signer boundary, deployment, observability and load/failover validation                                        | Pavlo Bolhar           |            8 |                       USD 2,750 | **USD 22,000** | MVP, Testnet, Mainnet |
+| Stellar/x402 adapter, asset/auth handling, conformance, transaction evidence and `upto` contribution                                       | Syed Hassan            |           10 |                       USD 2,500 | **USD 25,000** | MVP, Testnet, Mainnet |
+| Bazaar discovery/search, provenance controls, MCP interface, SDK helpers, abuse/relevance evaluation and reference integrations            | Pavel Svizinskiy       |            9 |                       USD 2,500 | **USD 22,500** | MVP, Testnet, Mainnet |
+| Product acceptance, technical documentation, release evidence and SCF reporting                                                            | Dmitry Buhaienko       |            5 |                       USD 2,500 | **USD 12,500** | All gates             |
+| Direct development/test infrastructure: RPC, database, hosting, observability, CI/load-test resources and controlled production validation | Project infrastructure |          n/a | documented actual costs, capped |  **USD 8,000** | Testnet, Mainnet      |
+| **Total**                                                                                                                                  |                        |       **32** |                                 | **USD 90,000** |                       |
 
 Iryna Zavorotnia, Head of Finance, provides budget governance and supporting-document control as internal company support and is not charged as technical labor in the table above.
 
@@ -23,13 +23,13 @@ Iryna Zavorotnia, Head of Finance, provides budget governance and supporting-doc
 
 The requested amount maps directly to the SCF delivery gates:
 
-| Gate | Share | Amount | Payment basis |
-| --- | ---: | ---: | --- |
-| Award setup | 10% | **USD 9,000** | Public implementation baseline, final interfaces, CI, backlog and delivery controls |
-| MVP | 20% | **USD 18,000** | Working canonical endpoints on testnet, initial discovery/MCP/SDK flow and reproducible example |
-| Testnet | 30% | **USD 27,000** | Complete testnet conformance, search/discovery, negative/security/reliability tests and public transaction evidence |
-| Mainnet | 40% | **USD 36,000** | Controlled pubnet release, self-hostable package, production runbooks/monitoring, audit remediation and final evidence package |
-| **Total** | **100%** | **USD 90,000** |  |
+| Gate        |    Share |         Amount | Payment basis                                                                                                                  |
+| ----------- | -------: | -------------: | ------------------------------------------------------------------------------------------------------------------------------ |
+| Award setup |      10% |  **USD 9,000** | Public implementation baseline, final interfaces, CI, backlog and delivery controls                                            |
+| MVP         |      20% | **USD 18,000** | Working canonical endpoints on testnet, initial discovery/MCP/SDK flow and reproducible example                                |
+| Testnet     |      30% | **USD 27,000** | Complete testnet conformance, search/discovery, negative/security/reliability tests and public transaction evidence            |
+| Mainnet     |      40% | **USD 36,000** | Controlled pubnet release, self-hostable package, production runbooks/monitoring, audit remediation and final evidence package |
+| **Total**   | **100%** | **USD 90,000** |                                                                                                                                |
 
 Payments remain subject to the official SCF award terms and any applicable XLM conversion mechanics in the executed award agreement.
 
