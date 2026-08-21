@@ -2,29 +2,29 @@
 
 This register is the reviewer index for reproducible project claims. Evidence is divided into **available pre-award evidence** and **implementation evidence required to complete future milestones**.
 
-| Evidence ID | Claim or gate | Artifact | Network/version | Status |
-| --- | --- | --- | --- | --- |
-| E-001 | Architecture and system boundary prepared | `docs/ARCHITECTURE.md` and ADRs | Design baseline | **Available** |
-| E-002 | Security and trust risks identified | `docs/SECURITY_MODEL.md`, `docs/THREAT_MODEL.md` | Design baseline | **Available** |
-| E-003 | SCF #45 RFP coverage mapped | `docs/grant/RFP_COMPLIANCE_MATRIX.md` | SCF #45 | **Available** |
-| E-004 | Repository uses a permissive license and dependency policy | `LICENSE`, `DEPENDENCY_POLICY.md` | Apache-2.0 | **Available** |
-| E-005 | Named technical implementation team and review ownership | `docs/grant/TEAM.md`, `MAINTAINERS.md` | Panel-review baseline | **Available** |
-| E-006 | USD 90,000 budget mapped to 32 person-weeks and direct infrastructure | `docs/grant/BUDGET.md` | Panel-review baseline | **Available** |
-| E-007 | Milestones have named owners and objective acceptance gates | `docs/grant/MILESTONES.md` | Eight-week delivery plan | **Available** |
-| E-008 | Material risks have named owners and observable triggers | `docs/grant/RISK_REGISTER.md` | Delivery baseline | **Available** |
-| E-009 | Existing AiFinPay execution foundation is publicly inspectable | `https://github.com/AiFinPay/sdk`, `https://github.com/AiFinPay/evm-contract`, `https://aifinpay.io` | Existing public work; not SCF-billed | **Available** |
-| E-010 | Reviewer summary ties technical implementation, team, budget and deliverables together | `docs/grant/PANEL_REVIEW_BRIEF.md` | SCF #45 panel review | **Available** |
-| E-100 | Canonical client completes testnet settlement | CI run, logs, exact revision and public transaction hash | `stellar:testnet` | **Required for implementation milestone** |
-| E-101 | Canonical client completes pubnet settlement | CI run, redacted logs, exact revision and public transaction hash | `stellar:pubnet` | **Required for implementation milestone** |
-| E-102 | Rejection-reason and negative-case conformance | Automated negative test report | Both networks | **Required for implementation milestone** |
-| E-103 | Bazaar discovery conformance and provenance controls | Integration report, ownership/spoofing tests and demo | Release candidate | **Required for implementation milestone** |
-| E-104 | MCP deterministic schemas/errors and equivalent resource identity | MCP inspector output and automated tests | Release candidate | **Required for implementation milestone** |
-| E-105 | Under-one-hour onboarding | Clean-room recording/log, exact setup steps and timings | Tagged release | **Required for implementation milestone** |
-| E-106 | Reliability, load and degraded-mode behavior | Load/failover report, capacity limits and dashboard export | Production candidate | **Required for implementation milestone** |
-| E-107 | Security review and remediation | Audit Bank scope, findings disposition and remediation evidence | Tagged release | **Required for implementation milestone** |
-| E-108 | Stellar `upto` upstream contribution | x402 TSC issue/PR or equivalent review record, spec, implementation and tests | Pinned upstream revision | **Required for implementation milestone** |
-| E-109 | Role-based Stellar integration documentation | Public documentation contribution/PR/status | Tagged release | **Required for implementation milestone** |
-| E-110 | Self-hostable production release | Tagged artifacts, SBOM/license report, deployment and rollback exercise | `stellar:pubnet` | **Required for implementation milestone** |
+| Evidence ID | Claim or gate                                                                          | Artifact                                                                                             | Network/version                      | Status                                    |
+| ----------- | -------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------ | ----------------------------------------- |
+| E-001       | Architecture and system boundary prepared                                              | `docs/ARCHITECTURE.md` and ADRs                                                                      | Design baseline                      | **Available**                             |
+| E-002       | Security and trust risks identified                                                    | `docs/SECURITY_MODEL.md`, `docs/THREAT_MODEL.md`                                                     | Design baseline                      | **Available**                             |
+| E-003       | SCF #45 RFP coverage mapped                                                            | `docs/grant/RFP_COMPLIANCE_MATRIX.md`                                                                | SCF #45                              | **Available**                             |
+| E-004       | Repository uses a permissive license and dependency policy                             | `LICENSE`, `DEPENDENCY_POLICY.md`                                                                    | Apache-2.0                           | **Available**                             |
+| E-005       | Named technical implementation team and review ownership                               | `docs/grant/TEAM.md`, `MAINTAINERS.md`                                                               | Panel-review baseline                | **Available**                             |
+| E-006       | USD 90,000 budget mapped to 32 person-weeks and direct infrastructure                  | `docs/grant/BUDGET.md`                                                                               | Panel-review baseline                | **Available**                             |
+| E-007       | Milestones have named owners and objective acceptance gates                            | `docs/grant/MILESTONES.md`                                                                           | Eight-week delivery plan             | **Available**                             |
+| E-008       | Material risks have named owners and observable triggers                               | `docs/grant/RISK_REGISTER.md`                                                                        | Delivery baseline                    | **Available**                             |
+| E-009       | Existing AiFinPay execution foundation is publicly inspectable                         | `https://github.com/AiFinPay/sdk`, `https://github.com/AiFinPay/evm-contract`, `https://aifinpay.io` | Existing public work; not SCF-billed | **Available**                             |
+| E-010       | Reviewer summary ties technical implementation, team, budget and deliverables together | `docs/grant/PANEL_REVIEW_BRIEF.md`                                                                   | SCF #45 panel review                 | **Available**                             |
+| E-100       | Canonical client completes testnet settlement                                          | CI run, logs, exact revision and public transaction hash                                             | `stellar:testnet`                    | **Required for implementation milestone** |
+| E-101       | Canonical client completes pubnet settlement                                           | CI run, redacted logs, exact revision and public transaction hash                                    | `stellar:pubnet`                     | **Required for implementation milestone** |
+| E-102       | Rejection-reason and negative-case conformance                                         | Automated negative test report                                                                       | Both networks                        | **Required for implementation milestone** |
+| E-103       | Bazaar discovery conformance and provenance controls                                   | Integration report, ownership/spoofing tests and demo                                                | Release candidate                    | **Required for implementation milestone** |
+| E-104       | MCP deterministic schemas/errors and equivalent resource identity                      | MCP inspector output and automated tests                                                             | Release candidate                    | **Required for implementation milestone** |
+| E-105       | Under-one-hour onboarding                                                              | Clean-room recording/log, exact setup steps and timings                                              | Tagged release                       | **Required for implementation milestone** |
+| E-106       | Reliability, load and degraded-mode behavior                                           | Load/failover report, capacity limits and dashboard export                                           | Production candidate                 | **Required for implementation milestone** |
+| E-107       | Security review and remediation                                                        | Audit Bank scope, findings disposition and remediation evidence                                      | Tagged release                       | **Required for implementation milestone** |
+| E-108       | Stellar `upto` upstream contribution                                                   | x402 TSC issue/PR or equivalent review record, spec, implementation and tests                        | Pinned upstream revision             | **Required for implementation milestone** |
+| E-109       | Role-based Stellar integration documentation                                           | Public documentation contribution/PR/status                                                          | Tagged release                       | **Required for implementation milestone** |
+| E-110       | Self-hostable production release                                                       | Tagged artifacts, SBOM/license report, deployment and rollback exercise                              | `stellar:pubnet`                     | **Required for implementation milestone** |
 
 ## Evidence quality rules
 

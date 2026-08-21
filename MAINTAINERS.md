@@ -6,13 +6,13 @@ This repository is maintained by AiFinPay for the SCF #45 Stellar x402 Facilitat
 
 ## Maintainer roster
 
-| Maintainer | Role | Repository authority / responsibility | Public profile |
-| --- | --- | --- | --- |
-| **Pavlo Bolhar** | CTO; Protocol & Backend Lead | Facilitator architecture, backend, deployment, observability, production release gate | <https://www.linkedin.com/in/pavlo-b-847376131> |
-| **Syed Hassan** | Web3 Lead & Smart Contract Engineer | Stellar/x402 correctness, network integration, conformance, payment security review, upstream `upto` work | <https://www.linkedin.com/in/syedhassan125/> |
-| **Pavel Svizinskiy** | Full-Stack Developer; MCP/SDK Owner | Bazaar APIs, MCP interface, SDK helpers, examples and developer integration surfaces | <https://www.linkedin.com/in/pavel-sv-684039354/> |
-| **Nick Staetskiy** | Discovery & Quality Owner | Search/evaluation methodology, abuse/relevance testing, reliability evidence and data-quality acceptance | <https://www.linkedin.com/in/nick-staetskiy-b25384277/> |
-| **Dmitry Buhaienko** | Founder & CEO; Product/SCF Owner | Scope, milestone acceptance, public evidence completeness, SCF reporting and release coordination | <https://www.linkedin.com/in/dmitry-bugaenko-9b9114378> |
+| Maintainer           | Role                                | Repository authority / responsibility                                                                     | Public profile                                          |
+| -------------------- | ----------------------------------- | --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| **Pavlo Bolhar**     | CTO; Protocol & Backend Lead        | Facilitator architecture, backend, deployment, observability, production release gate                     | <https://www.linkedin.com/in/pavlo-b-847376131>         |
+| **Syed Hassan**      | Web3 Lead & Smart Contract Engineer | Stellar/x402 correctness, network integration, conformance, payment security review, upstream `upto` work | <https://www.linkedin.com/in/syedhassan125/>            |
+| **Pavel Svizinskiy** | Full-Stack Developer; MCP/SDK Owner | Bazaar APIs, MCP interface, SDK helpers, examples and developer integration surfaces                      | <https://www.linkedin.com/in/pavel-sv-684039354/>       |
+| **Nick Staetskiy**   | Discovery & Quality Owner           | Search/evaluation methodology, abuse/relevance testing, reliability evidence and data-quality acceptance  | <https://www.linkedin.com/in/nick-staetskiy-b25384277/> |
+| **Dmitry Buhaienko** | Founder & CEO; Product/SCF Owner    | Scope, milestone acceptance, public evidence completeness, SCF reporting and release coordination         | <https://www.linkedin.com/in/dmitry-bugaenko-9b9114378> |
 
 **Budget governance:** Iryna Zavorotnia, Head of Finance — <https://www.linkedin.com/in/iryna-zavorotnia-881713340/>
 

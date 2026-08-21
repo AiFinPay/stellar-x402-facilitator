@@ -34,16 +34,16 @@ This project builds on canonical packages instead of reimplementing solved settl
 
 ## Planned product surface
 
-| Component | Responsibility | SCF completion evidence |
-| --- | --- | --- |
-| Facilitator | `/supported`, `/verify`, `/settle` on testnet and pubnet | API tests, canonical E2E runs, transaction hashes |
-| Bazaar | `/discovery/resources`, `/discovery/search`, safe automatic cataloging | Integration, provenance/spoofing and relevance tests |
-| MCP server | Resource search and paid-call workflow with deterministic errors | MCP schema/inspector tests and reference integration |
-| `exact` | Canonical Stellar exact scheme via `@x402/stellar` | Upstream-compatible conformance results |
-| `upto` | Stellar network spec and implementation proposed upstream | Reviewable spec, implementation, tests and upstream discussion |
-| SDK helpers | Seller metadata and buyer/agent integration helpers | Runnable quickstart and automated tests |
-| Examples | Paid discoverable API and MCP-driven paying agent | Two end-to-end examples |
-| Operations | Monitoring, SLOs, degraded modes, rollback and maintenance | Load/failover report, runbook exercise, release evidence |
+| Component   | Responsibility                                                         | SCF completion evidence                                        |
+| ----------- | ---------------------------------------------------------------------- | -------------------------------------------------------------- |
+| Facilitator | `/supported`, `/verify`, `/settle` on testnet and pubnet               | API tests, canonical E2E runs, transaction hashes              |
+| Bazaar      | `/discovery/resources`, `/discovery/search`, safe automatic cataloging | Integration, provenance/spoofing and relevance tests           |
+| MCP server  | Resource search and paid-call workflow with deterministic errors       | MCP schema/inspector tests and reference integration           |
+| `exact`     | Canonical Stellar exact scheme via `@x402/stellar`                     | Upstream-compatible conformance results                        |
+| `upto`      | Stellar network spec and implementation proposed upstream              | Reviewable spec, implementation, tests and upstream discussion |
+| SDK helpers | Seller metadata and buyer/agent integration helpers                    | Runnable quickstart and automated tests                        |
+| Examples    | Paid discoverable API and MCP-driven paying agent                      | Two end-to-end examples                                        |
+| Operations  | Monitoring, SLOs, degraded modes, rollback and maintenance             | Load/failover report, runbook exercise, release evidence       |
 
 ## Architecture
 
