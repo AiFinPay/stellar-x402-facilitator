@@ -72,14 +72,13 @@ These assets are evidence of execution capability and reusable engineering exper
 
 ## Technical implementation team
 
-| Contributor          | Role for SCF #45                                                                               |                                       Allocation |
-| -------------------- | ---------------------------------------------------------------------------------------------- | -----------------------------------------------: |
-| **Pavlo Bolhar**     | CTO; facilitator/backend and production operations                                             |                               **8 person-weeks** |
-| **Syed Hassan**      | Web3 Lead; Stellar/x402 integration, conformance and payment-security logic                    |                               **8 person-weeks** |
-| **Pavel Svizinskiy** | Full-Stack Developer; Bazaar, MCP, SDK and reference integrations                              |                               **7 person-weeks** |
-| **Nick Staetskiy**   | Discovery & Quality Owner; search evaluation, abuse/relevance and reliability evidence         |                               **5 person-weeks** |
-| **Dmitry Buhaienko** | Founder & CEO; product acceptance, technical documentation, release evidence and SCF reporting |                               **4 person-weeks** |
-| **Iryna Zavorotnia** | Head of Finance; budget governance and supporting-document control                             | Internal support; not charged as technical labor |
+| Contributor | Role for SCF #45 | Allocation |
+| --- | --- | ---: |
+| **Pavlo Bolhar** | CTO; facilitator/backend, production operations, observability and load/failover validation | **8 person-weeks** |
+| **Syed Hassan** | Web3 Lead; Stellar/x402 integration, conformance, transaction evidence and payment-security logic | **10 person-weeks** |
+| **Pavel Svizinskiy** | Full-Stack Developer; Bazaar discovery/search, provenance controls, MCP, SDK, abuse/relevance evaluation and reference integrations | **9 person-weeks** |
+| **Dmitry Buhaienko** | Founder & CEO; product acceptance, technical documentation, release evidence and SCF reporting | **5 person-weeks** |
+| **Iryna Zavorotnia** | Head of Finance; budget governance and supporting-document control | Internal support; not charged as technical labor |
 
 Total award-funded delivery capacity is **32 person-weeks**, averaging four FTE across the eight-week window. Public profiles, responsibilities and review ownership are documented in [`TEAM.md`](TEAM.md) and [`../../MAINTAINERS.md`](../../MAINTAINERS.md).
 
@@ -87,26 +86,25 @@ Total award-funded delivery capacity is **32 person-weeks**, averaging four FTE 
 
 **Requested award: USD 90,000.**
 
-| Cost category                                                          |         Amount |
-| ---------------------------------------------------------------------- | -------------: |
-| Facilitator backend, deployment and observability                      | **USD 22,000** |
-| Stellar/x402 integration, conformance and `upto` contribution          | **USD 20,000** |
-| Bazaar, MCP, SDK and reference integrations                            | **USD 17,500** |
-| Search quality, reliability and evidence work                          | **USD 12,500** |
-| Product acceptance, technical docs, release evidence and SCF reporting | **USD 10,000** |
-| Direct development/test infrastructure, capped                         |  **USD 8,000** |
-| **Total**                                                              | **USD 90,000** |
+| Cost category | Amount |
+| --- | ---: |
+| Facilitator backend, deployment, observability and reliability validation | **USD 22,000** |
+| Stellar/x402 integration, conformance, transaction evidence and `upto` contribution | **USD 25,000** |
+| Bazaar discovery/search, provenance controls, MCP, SDK and reference integrations | **USD 22,500** |
+| Product acceptance, technical docs, release evidence and SCF reporting | **USD 12,500** |
+| Direct development/test infrastructure, capped | **USD 8,000** |
+| **Total** | **USD 90,000** |
 
 The labor plan is 32 person-weeks, all tied to named workstream owners. Infrastructure is separated and capped rather than hidden in labor. No general marketing, legal/entity setup, token/liquidity work, past AiFinPay development or separate Audit Bank fees are included. Full methodology: [`BUDGET.md`](BUDGET.md).
 
 ## Deliverables and payment gates
 
-| Gate            |       Share / amount | Outcome required before completion claim                                                                                                                |
-| --------------- | -------------------: | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Award setup** |  **10% / USD 9,000** | Final interfaces, architecture/ADRs, dependency baseline, CI, implementation backlog and named delivery controls                                        |
-| **MVP**         | **20% / USD 18,000** | Working canonical endpoints, first successful testnet settlement, initial Bazaar/MCP/SDK flow and reproducible example                                  |
-| **Testnet**     | **30% / USD 27,000** | Complete testnet conformance, search/discovery controls, replay/negative/security/reliability evidence, two examples and reviewable `upto` contribution |
-| **Mainnet**     | **40% / USD 36,000** | Controlled pubnet release, self-hostable package, final conformance, monitoring/runbooks, audit remediation and complete public evidence package        |
+| Gate | Share / amount | Outcome required before completion claim |
+| --- | ---: | --- |
+| **Award setup** | **10% / USD 9,000** | Final interfaces, architecture/ADRs, dependency baseline, CI, implementation backlog and named delivery controls |
+| **MVP** | **20% / USD 18,000** | Working canonical endpoints, first successful testnet settlement, initial Bazaar/MCP/SDK flow and reproducible example |
+| **Testnet** | **30% / USD 27,000** | Complete testnet conformance, search/discovery controls, replay/negative/security/reliability evidence, two examples and reviewable `upto` contribution |
+| **Mainnet** | **40% / USD 36,000** | Controlled pubnet release, self-hostable package, final conformance, monitoring/runbooks, audit remediation and complete public evidence package |
 
 Detailed owner/evidence gates: [`MILESTONES.md`](MILESTONES.md).
 
