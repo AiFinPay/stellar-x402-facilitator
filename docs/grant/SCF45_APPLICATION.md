@@ -1,129 +1,144 @@
-# SCF #45 Build Award application draft
+# SCF #45 Build Award — panel review reference
 
-> Submission draft. Replace every `TO_BE_CONFIRMED` field with verified information before copying this document into the SCF portal. This repository describes future work; it does not claim that the Stellar implementation is already production-ready.
+This document is the repository-side reference for AiFinPay's SCF #45 Build Award submission. The SCF portal submission remains authoritative if wording differs. This file is maintained so reviewers can quickly inspect the technical implementation plan, team, USD 90,000 budget, milestones and evidence model in one place.
 
 ## Project
 
 **Name:** Stellar x402 Facilitator  
 **Organization:** AiFinPay  
 **Track:** SCF #45 Build Award — x402 Facilitator with Bazaar Discovery RFP  
-**Requested amount:** TO_BE_CONFIRMED after milestone costing  
-**Expected delivery window:** eight weeks to controlled production, followed by stabilization and maintenance through the award period
+**Requested amount:** **USD 90,000**  
+**Delivery target:** eight weeks to controlled production, followed by stabilization, upstream coordination, audit remediation and maintenance through the award period
 
 ## One-sentence summary
 
-An Apache-2.0, production-oriented x402 facilitator for Stellar testnet and mainnet that uses the canonical `@x402/stellar` settlement library and adds Bazaar-compatible discovery, an MCP discovery interface, operational tooling, conformance evidence, and developer examples.
+AiFinPay will build an Apache-2.0, production-oriented x402 facilitator for Stellar testnet and pubnet using canonical `@x402/stellar` settlement, with Bazaar-compatible discovery, MCP-native agent access, SDK helpers, conformance evidence and production operations.
 
 ## Problem
 
-Stellar has canonical x402 settlement support, but developers still need an operational facilitator that can be deployed or consumed as a service, exposes reliable discovery, works with AI agents through MCP, and provides verifiable testnet and mainnet conformance. Without that layer, every integrator must assemble settlement, discovery, infrastructure, monitoring, and security controls independently.
+Stellar already has canonical x402 settlement support, but developers still need an operational layer that can be consumed as a hosted service or deployed independently: reliable facilitator endpoints, discovery, agent/MCP interfaces, observability, security controls, conformance evidence and production runbooks. Without that layer, every integrator must assemble these pieces separately and prove compatibility on their own.
 
-## Proposed solution
+## Proposed technical implementation
 
-AiFinPay will build and release:
+AiFinPay will deliver:
 
-1. a hosted and self-hostable Stellar facilitator for testnet and mainnet;
-2. canonical x402 endpoints, including `/supported`, `/verify`, and `/settle`;
-3. Bazaar-compatible automatic resource registration, catalog APIs, and natural-language search;
-4. an MCP discovery server with stable schemas and deterministic errors;
-5. a Stellar `upto` scheme specification and implementation proposed upstream through the x402 TSC process;
-6. SDK helpers, two end-to-end examples, a conformance suite, transaction evidence, operational runbooks, and a role-based Stellar developer guide;
-7. security review preparation and remediation through the SCF Audit Bank process.
+1. **Hosted and self-hostable facilitator** for `stellar:testnet` and `stellar:pubnet`.
+2. **Canonical x402 endpoints**: `/supported`, `/verify`, `/settle`, with deterministic machine-readable rejection reasons.
+3. **Canonical Stellar settlement integration** through `@x402/stellar`; the project will not create a competing settlement protocol.
+4. **Durable operational state** for idempotency, settlement status, transaction evidence and recovery, while keeping signing material isolated from public application processes.
+5. **Bazaar-compatible discovery** with automatic registration, normalized HTTP/MCP resource metadata, provenance/ownership controls and natural-language search.
+6. **MCP interface and SDK helpers** that allow agent runtimes and developers to discover paid resources, interpret payment requirements and retry paid calls through canonical flows.
+7. **Stellar `upto` contribution** as a reviewable specification, implementation and tests proposed upstream; external merge/acceptance is not represented as team-controlled.
+8. **Conformance and production evidence**: upstream-compatible tests, negative/replay cases, public transaction hashes, load/failover evidence, SBOM/license controls, monitoring, degraded modes and rollback runbooks.
+9. **Two end-to-end reference integrations** and role-based documentation for operators, API sellers, client/wallet developers and agent developers.
+10. **Security review readiness and remediation** through the SCF Audit Bank process, with security-sensitive releases blocked by unresolved fund-safety findings.
 
-The implementation will build on the Apache-2.0 `@x402/stellar` package. It will not reimplement Stellar settlement or use the AGPL OpenZeppelin Relayer/plugin/SDK path.
+### System boundary
+
+```mermaid
+flowchart TD
+    A[AI agent / x402 client] --> M[MCP and SDK helpers]
+    M --> B[Bazaar catalog and search]
+    M --> R[Paid HTTP / MCP resource]
+    R --> F[Stellar x402 facilitator]
+    F --> X[Canonical @x402/stellar integration]
+    F --> Q[Signer / sequencing boundary]
+    X --> S[Stellar testnet or pubnet]
+    Q --> S
+    B --> D[Catalog database / index]
+    F --> O[Logs, metrics, traces]
+    B --> O
+```
+
+The edge service validates canonical request shapes, applies idempotency and policy controls, and delegates Stellar-specific verification/settlement to canonical libraries. The Bazaar layer indexes public resource metadata and provenance without becoming the authority over seller pricing. The MCP layer exposes discovery and paid-call workflows to agent runtimes without storing agent private keys.
+
+Detailed design: [`../ARCHITECTURE.md`](../ARCHITECTURE.md), [`../SECURITY_MODEL.md`](../SECURITY_MODEL.md), [`../THREAT_MODEL.md`](../THREAT_MODEL.md), [`RFP_COMPLIANCE_MATRIX.md`](RFP_COMPLIANCE_MATRIX.md).
 
 ## Why Stellar
 
-The project is Stellar-specific at the settlement and operations layers. It will support Stellar testnet and pubnet network identifiers, SEP-41 assets, Stellar authorization entries, ledger-bound validity, trustline checks, Soroban resource constraints, fee sponsorship reporting, and channel-account/fee-bump strategies for throughput. The deliverable is intended to make Stellar payments easier to integrate into paid HTTP APIs and agent-driven commerce.
+The work is Stellar-specific at the settlement, asset, authorization and operations layers. The implementation must handle explicit Stellar network identifiers, SEP-41 assets, Stellar authorization entries, ledger-bound validity, trustline/balance preflight, Soroban resource constraints where applicable, accurate fee-sponsorship reporting, and throughput/sequence-management strategies appropriate to production Stellar usage.
 
-## Users
+The objective is to reduce the integration cost for paid HTTP APIs and agent-driven services that want to use Stellar while preserving canonical x402 interoperability.
 
-- API providers that want to charge for HTTP resources on Stellar;
-- AI-agent and MCP developers that need machine-discoverable paid tools;
-- wallet and payment SDK developers integrating canonical x402 clients;
-- operators that want a self-hosted facilitator with production runbooks;
-- ecosystem teams that need reusable conformance tests and examples.
+## Existing execution foundation
 
-## Existing foundation and build readiness
+The Stellar facilitator itself is new grant work. AiFinPay does, however, already maintain public payment infrastructure that demonstrates relevant implementation experience:
 
-AiFinPay already has experience with x402-oriented payment infrastructure, SDK and MCP concepts, and multi-chain product architecture. The Stellar facilitator itself is new work. Before submission, the team has defined the proposed system boundaries, data flows, trust model, threat model, API contracts, testing strategy, and milestone acceptance gates in this repository.
+- agent payment SDK and MCP tooling: <https://github.com/AiFinPay/sdk>
+- public smart-contract infrastructure: <https://github.com/AiFinPay/evm-contract>
+- live product and protocol discovery surface: <https://aifinpay.io>
 
-Implementation readiness evidence:
+These assets are evidence of execution capability and reusable engineering experience. **They are not billed as SCF deliverables and do not replace Stellar-specific acceptance evidence.**
 
-- [Architecture](../ARCHITECTURE.md)
-- [Security model](../SECURITY_MODEL.md)
-- [Threat model](../THREAT_MODEL.md)
-- [Conformance plan](../CONFORMANCE.md)
-- [Milestones](MILESTONES.md)
-- [RFP compliance matrix](RFP_COMPLIANCE_MATRIX.md)
+## Technical implementation team
 
-## Differentiation and ecosystem value
+| Contributor | Role for SCF #45 | Allocation |
+| --- | --- | ---: |
+| **Pavlo Bolhar** | CTO; facilitator/backend and production operations | **8 person-weeks** |
+| **Syed Hassan** | Web3 Lead; Stellar/x402 integration, conformance and payment-security logic | **8 person-weeks** |
+| **Pavel Svizinskiy** | Full-Stack Developer; Bazaar, MCP, SDK and reference integrations | **7 person-weeks** |
+| **Nick Staetskiy** | Discovery & Quality Owner; search evaluation, abuse/relevance and reliability evidence | **5 person-weeks** |
+| **Dmitry Buhaienko** | Founder & CEO; product acceptance, technical documentation, release evidence and SCF reporting | **4 person-weeks** |
+| **Iryna Zavorotnia** | Head of Finance; budget governance and supporting-document control | Internal support; not charged as technical labor |
 
-The work joins four capabilities in one permissively licensed package: canonical Stellar settlement, operational facilitator infrastructure, Bazaar-compatible discovery, and MCP-native discovery. The repository will provide reusable tests and documentation rather than a closed hosted endpoint only. This lowers integration time for new Stellar x402 applications and creates public compatibility evidence that other implementations can reuse.
+Total award-funded delivery capacity is **32 person-weeks**, averaging four FTE across the eight-week window. Public profiles, responsibilities and review ownership are documented in [`TEAM.md`](TEAM.md) and [`../../MAINTAINERS.md`](../../MAINTAINERS.md).
 
-## Architecture summary
+## Budget feasibility
 
-The edge API validates canonical x402 requests and delegates Stellar-specific verification and settlement to `@x402/stellar`. A network-isolated signer protects facilitator credentials. A discovery index derives public resource metadata from registered HTTP and MCP services. Bazaar APIs and the MCP server query the same normalized catalog. Durable state stores idempotency keys, settlement status, transaction hashes, and discovery metadata; secrets and raw authorization material are excluded from logs.
+**Requested award: USD 90,000.**
 
-The first production version will avoid a custom on-chain registry. If registry requirements change, Soroban contract state and TTL restoration will be designed and costed separately. Batch settlement and authorization-capture are outside the RFP scope.
+| Cost category | Amount |
+| --- | ---: |
+| Facilitator backend, deployment and observability | **USD 22,000** |
+| Stellar/x402 integration, conformance and `upto` contribution | **USD 20,000** |
+| Bazaar, MCP, SDK and reference integrations | **USD 17,500** |
+| Search quality, reliability and evidence work | **USD 12,500** |
+| Product acceptance, technical docs, release evidence and SCF reporting | **USD 10,000** |
+| Direct development/test infrastructure, capped | **USD 8,000** |
+| **Total** | **USD 90,000** |
 
-## Open source
+The labor plan is 32 person-weeks, all tied to named workstream owners. Infrastructure is separated and capped rather than hidden in labor. No general marketing, legal/entity setup, token/liquidity work, past AiFinPay development or separate Audit Bank fees are included. Full methodology: [`BUDGET.md`](BUDGET.md).
 
-The project will be released under Apache License 2.0 in a public GitHub repository. Dependencies will be reviewed under the published dependency policy. Public issues, security reporting, governance, maintenance, and contribution processes are included. Security vulnerabilities will follow coordinated disclosure rather than public issue reporting.
+## Deliverables and payment gates
 
-## Delivery plan
+| Gate | Share / amount | Outcome required before completion claim |
+| --- | ---: | --- |
+| **Award setup** | **10% / USD 9,000** | Final interfaces, architecture/ADRs, dependency baseline, CI, implementation backlog and named delivery controls |
+| **MVP** | **20% / USD 18,000** | Working canonical endpoints, first successful testnet settlement, initial Bazaar/MCP/SDK flow and reproducible example |
+| **Testnet** | **30% / USD 27,000** | Complete testnet conformance, search/discovery controls, replay/negative/security/reliability evidence, two examples and reviewable `upto` contribution |
+| **Mainnet** | **40% / USD 36,000** | Controlled pubnet release, self-hostable package, final conformance, monitoring/runbooks, audit remediation and complete public evidence package |
 
-The work is divided into the SCF payment gates:
+Detailed owner/evidence gates: [`MILESTONES.md`](MILESTONES.md).
 
-- **Award / 10%:** final technical plan, validated interfaces, implementation backlog, baseline CI, and public project setup;
-- **MVP / 20%:** canonical facilitator endpoints, testnet settlement, initial Bazaar catalog, MCP discovery, SDK helpers, and first example;
-- **Testnet / 30%:** complete testnet conformance, natural-language search, both examples, security controls, load/reliability testing, and documented transaction evidence;
-- **Mainnet / 40%:** controlled mainnet release, published conformance report, production monitoring/runbooks, Audit Bank review and remediation, upstream `upto` contribution status, and role-based documentation contribution.
+## Hard acceptance criteria
 
-Detailed deliverables and acceptance evidence are in [MILESTONES.md](MILESTONES.md).
+The project is not considered production-ready until the following are independently verifiable:
 
-## Budget
+- an unmodified canonical x402 client completes an end-to-end payment on both `stellar:testnet` and `stellar:pubnet`;
+- `/supported` reports required Stellar metadata, including accurate `areFeesSponsored` behavior;
+- canonical payloads are accepted without proprietary required fields;
+- settlement results contain the expected canonical transaction evidence;
+- every rejection has a stable non-null machine-readable reason;
+- transaction hashes and the exact software revision are published for required network evidence;
+- discovery prevents or detects seller, endpoint and price spoofing and exposes provenance;
+- Bazaar and MCP discovery resolve equivalent normalized resource identities;
+- replay, duplicate-settlement, authorization-boundary and ledger-expiration cases are covered by automated tests;
+- two runnable end-to-end examples and an under-one-hour clean-room onboarding record exist;
+- production monitoring, degraded modes, rollback procedures and maintenance ownership are documented;
+- security review findings affecting fund safety are remediated or formally dispositioned before the production completion claim.
 
-The final request will cover only future Stellar development and eligible delivery work. It will not request reimbursement for prior AiFinPay work, general marketing/advertising, legal incorporation, token activity, or unsupported overhead. The amount will be derived from person-weeks and milestone outputs before submission; see [BUDGET.md](BUDGET.md).
+## Open source and ecosystem value
 
-## Success metrics
+The project is Apache-2.0 and self-hostable. AiFinPay-specific extensions must be optional, namespaced and backward-compatible. Reusable Stellar/x402 conformance work and the `upto` contribution will be proposed upstream where appropriate so the ecosystem is not dependent on one hosted operator.
 
-- unmodified canonical clients complete paid flows on Stellar testnet and pubnet;
-- `/supported` correctly reports networks, schemes, assets, and `areFeesSponsored`;
-- successful settlement responses contain canonical payload shape and public transaction hashes;
-- rejected requests return non-null, actionable rejection reasons;
-- upstream end-to-end suite passes on both networks;
-- developers can move from documentation to a paid, discoverable endpoint in under one hour;
-- production target is at least 99% measured monthly availability, with documented degraded modes;
-- Bazaar and MCP discovery return equivalent normalized resource metadata;
-- all milestone evidence is public except secrets and coordinated security findings.
+The ecosystem value is the combination of four reusable capabilities in one permissively licensed delivery: canonical Stellar settlement integration, production facilitator operations, Bazaar-compatible discovery and MCP-native discovery/payment tooling.
 
-## Risks and mitigations
+## Risks and controls
 
-- **Specification drift:** pin supported package versions, run upstream compatibility tests, and maintain a release compatibility matrix.
-- **Mainnet signing risk:** isolate signing, minimize balances, apply allowlists and limits, and rehearse incident response.
-- **Replay/front-running:** bind verification to network, resource, amount, payer/payee, nonce, and ledger validity; enforce idempotency.
-- **Discovery spoofing:** verify ownership, sign or attest metadata where appropriate, moderate registrations, and expose provenance.
-- **Throughput limits:** load-test channel-account and fee-bump strategies and publish capacity limits.
-- **`upto` review uncertainty:** treat TSC acceptance as an external dependency; provide a draft, implementation, tests, and review evidence without claiming control over upstream approval.
+Primary delivery risks include specification drift, signer compromise, replay/authorization flaws, discovery spoofing, search-quality failures, throughput limits, upstream `upto` review uncertainty, staffing conflicts and audit findings. Every material risk has a named owner, observable trigger and mitigation in [`RISK_REGISTER.md`](RISK_REGISTER.md).
 
-## Team
+## Evidence model
 
-The final portal submission will list verified contributors, roles, relevant experience, availability, and GitHub/LinkedIn profiles. At least two eligible team representatives will be designated for required SCF program sessions. No unverified names or credentials are included in this draft; see [TEAM.md](TEAM.md).
+Reviewers should not need to accept narrative claims on trust. Each acceptance gate updates [`EVIDENCE_REGISTER.md`](EVIDENCE_REGISTER.md) with the exact public artifact used to prove it: release/tag, CI run, test report, transaction hash, load/failover result, documentation contribution, SBOM/license report or security-remediation record.
 
-## Links and evidence
-
-- Repository: <https://github.com/AiFinPay/stellar-x402-facilitator>
-- Evidence register: [EVIDENCE_REGISTER.md](EVIDENCE_REGISTER.md)
-- Official references: [../REFERENCES.md](../REFERENCES.md)
-
-## Pre-submission confirmations
-
-- [ ] Requested amount and person-week calculation approved internally.
-- [ ] Contributor identities, eligibility, availability, and profiles verified.
-- [ ] Repository visibility changed from internal/private to public.
-- [ ] Every `TO_BE_CONFIRMED` marker removed.
-- [ ] Portal answer is self-contained and does not depend on attachments alone.
-- [ ] No past work, marketing, legal, token, or ineligible costs included.
-- [ ] KYC/KYB path and two program representatives confirmed.
-- [ ] All claims linked to public evidence or clearly labeled as planned work.
+The concise reviewer index is available in [`PANEL_REVIEW_BRIEF.md`](PANEL_REVIEW_BRIEF.md).
