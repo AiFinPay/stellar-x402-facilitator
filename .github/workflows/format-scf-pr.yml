@@ -1,0 +1,37 @@
+name: Temporary SCF docs formatter
+
+on:
+  push:
+    branches:
+      - scf45-panel-review-hardening
+
+permissions:
+  contents: write
+
+jobs:
+  format:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: scf45-panel-review-hardening
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run format
+      - run: git diff --check
+      - name: Commit formatter output
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No formatting changes required."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- README.md MAINTAINERS.md docs/grant/TEAM.md docs/grant/BUDGET.md docs/grant/MILESTONES.md docs/grant/RISK_REGISTER.md docs/grant/SCF45_APPLICATION.md docs/grant/EVIDENCE_REGISTER.md docs/grant/PANEL_REVIEW_BRIEF.md
+          git commit -m "style: format SCF panel review docs"
+          git push origin HEAD:scf45-panel-review-hardening
