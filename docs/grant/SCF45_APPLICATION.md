@@ -12,7 +12,7 @@ This document is the repository-side reference for AiFinPay's SCF #45 Build Awar
 
 ## One-sentence summary
 
-AiFinPay will build an Apache-2.0, production-oriented x402 facilitator for Stellar testnet and pubnet using canonical `@x402/stellar` settlement, with Bazaar-compatible discovery, MCP-native agent access, SDK helpers, conformance evidence and production operations.
+AiFinPay will build an Apache-2.0, production-oriented x402 facilitator for Stellar testnet and pubnet using canonical `@x402/stellar` settlement, with Bazaar-compatible discovery, MCP-native agent access, SDK helpers, an AIFP-1 merchant monetization reference flow, planned Fermah Pay interoperability, conformance evidence and production operations.
 
 ## Problem
 
@@ -30,8 +30,11 @@ AiFinPay will deliver:
 6. **MCP interface and SDK helpers** that allow agent runtimes and developers to discover paid resources, interpret payment requirements and retry paid calls through canonical flows.
 7. **Stellar `upto` contribution** as a reviewable specification, implementation and tests proposed upstream; external merge/acceptance is not represented as team-controlled.
 8. **Conformance and production evidence**: upstream-compatible tests, negative/replay cases, public transaction hashes, load/failover evidence, SBOM/license controls, monitoring, degraded modes and rollback runbooks.
-9. **Two end-to-end reference integrations** and role-based documentation for operators, API sellers, client/wallet developers and agent developers.
-10. **Security review readiness and remediation** through the SCF Audit Bank process, with security-sensitive releases blocked by unresolved fund-safety findings.
+9. **AIFP-1 merchant monetization reference integration** in which a website, API, MCP server or digital service publishes a machine-readable price and receives non-custodial USDC settlement to a merchant-controlled Stellar account. The reference profile verifies the 99% merchant / 1% AiFinPay / 0% creator route without changing canonical x402 wire requirements.
+10. **AIFP-2 application profile** for AiFinPay routing, policy and verifiable receipt helpers over canonical x402 and `@x402/stellar`, with no proprietary required fields and a current 0% AiFinPay route fee.
+11. **Planned Fermah Pay interoperability** for optional buyer-account, prepaid USDC, recurring-billing and settlement-state integration. Core delivery does not depend on Fermah Pay or its SCF outcome.
+12. **Two end-to-end reference integrations** and role-based documentation for operators, merchants, API sellers, client/wallet developers and agent developers.
+13. **Security review readiness and remediation** through the SCF Audit Bank process, with security-sensitive releases blocked by unresolved fund-safety findings.
 
 ### System boundary
 
@@ -48,9 +51,13 @@ flowchart TD
     B --> D[Catalog database / index]
     F --> O[Logs, metrics, traces]
     B --> O
+    S --> H[Merchant-controlled Stellar account]
+    P[Fermah Pay interface - planned] <--> F
 ```
 
 The edge service validates canonical request shapes, applies idempotency and policy controls, and delegates Stellar-specific verification/settlement to canonical libraries. The Bazaar layer indexes public resource metadata and provenance without becoming the authority over seller pricing. The MCP layer exposes discovery and paid-call workflows to agent runtimes without storing agent private keys.
+
+AIFP-1 is represented as a merchant reference integration over this canonical facilitator: the merchant controls the destination account and paid resource, while the reference flow verifies quoted amount, route split, receipt and access. AIFP-2 contributes AiFinPay application-level routing, policy and receipt helpers without replacing `@x402/stellar` or adding proprietary required fields. Fermah Pay interoperability is optional and separately scoped; the AiFinPay award remains independently deliverable.
 
 Detailed design: [`../ARCHITECTURE.md`](../ARCHITECTURE.md), [`../SECURITY_MODEL.md`](../SECURITY_MODEL.md), [`../THREAT_MODEL.md`](../THREAT_MODEL.md), [`RFP_COMPLIANCE_MATRIX.md`](RFP_COMPLIANCE_MATRIX.md).
 
@@ -121,6 +128,8 @@ The project is not considered production-ready until the following are independe
 - discovery prevents or detects seller, endpoint and price spoofing and exposes provenance;
 - Bazaar and MCP discovery resolve equivalent normalized resource identities;
 - replay, duplicate-settlement, authorization-boundary and ledger-expiration cases are covered by automated tests;
+- a runnable AIFP-1 merchant monetization flow proves machine-readable pricing, non-custodial USDC settlement, the configured route split, receipt and resource access;
+- optional Fermah Pay interoperability has contract tests and evidence where the external interface is available, without blocking core acceptance;
 - two runnable end-to-end examples and an under-one-hour clean-room onboarding record exist;
 - production monitoring, degraded modes, rollback procedures and maintenance ownership are documented;
 - security review findings affecting fund safety are remediated or formally dispositioned before the production completion claim.
