@@ -36,10 +36,10 @@ This project builds on canonical packages instead of reimplementing solved settl
 
 The facilitator remains canonical x402 infrastructure. AiFinPay protocol profiles use that infrastructure without adding proprietary required fields to the wire format.
 
-| Profile | User and purpose | Planned Stellar outcome |
-| --- | --- | --- |
-| **AIFP-1 merchant monetization** | Websites, APIs, MCP servers and digital services price access for autonomous agents | The agent pays the quoted USDC amount and settlement reaches the merchant-controlled Stellar account through a non-custodial flow. The AiFinPay merchant route uses the published gross price: 99% to the merchant, 1% to AiFinPay and 0% creator/referral fee. |
-| **AIFP-2 agent payments** | Autonomous agents pay for APIs, MCP tools, data, compute and other digital resources | AiFinPay routing, policy and receipt helpers operate over canonical x402 and `@x402/stellar`. The provider price is preserved; the current AiFinPay fee for this route is 0%, with network costs handled separately. |
+| Profile                          | User and purpose                                                                     | Planned Stellar outcome                                                                                                                                                                                                                                         |
+| -------------------------------- | ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **AIFP-1 merchant monetization** | Websites, APIs, MCP servers and digital services price access for autonomous agents  | The agent pays the quoted USDC amount and settlement reaches the merchant-controlled Stellar account through a non-custodial flow. The AiFinPay merchant route uses the published gross price: 99% to the merchant, 1% to AiFinPay and 0% creator/referral fee. |
+| **AIFP-2 agent payments**        | Autonomous agents pay for APIs, MCP tools, data, compute and other digital resources | AiFinPay routing, policy and receipt helpers operate over canonical x402 and `@x402/stellar`. The provider price is preserved; the current AiFinPay fee for this route is 0%, with network costs handled separately.                                            |
 
 AIFP-1 is included as a merchant reference integration and acceptance flow, not as a replacement for canonical Stellar settlement. AIFP-2 is an AiFinPay application profile over canonical x402 compatibility. No production Stellar deployment is claimed until the public acceptance gates below are satisfied.
 
@@ -56,18 +56,18 @@ The projects remain independent, with separate teams, technical scopes, delivera
 
 ## Planned product surface
 
-| Component   | Responsibility                                                         | SCF completion evidence                                        |
-| ----------- | ---------------------------------------------------------------------- | -------------------------------------------------------------- |
-| Facilitator | `/supported`, `/verify`, `/settle` on testnet and pubnet               | API tests, canonical E2E runs, transaction hashes              |
-| Bazaar      | `/discovery/resources`, `/discovery/search`, safe automatic cataloging | Integration, provenance/spoofing and relevance tests           |
-| MCP server  | Resource search and paid-call workflow with deterministic errors       | MCP schema/inspector tests and reference integration           |
-| `exact`     | Canonical Stellar exact scheme via `@x402/stellar`                     | Upstream-compatible conformance results                        |
-| `upto`      | Stellar network spec and implementation proposed upstream              | Reviewable spec, implementation, tests and upstream discussion |
-| SDK helpers | Seller metadata and buyer/agent integration helpers                    | Runnable quickstart and automated tests                        |
-| AIFP-1 merchant profile | Merchant pricing and non-custodial USDC settlement reference flow | Public testnet/pubnet transactions, split verification and E2E tests |
-| Fermah Pay interoperability | Optional buyer-account and billing-state interface integration | Contract tests and interoperability evidence; no core dependency |
-| Examples    | AIFP-1 merchant flow and MCP-driven paying agent                       | Two end-to-end examples                                        |
-| Operations  | Monitoring, SLOs, degraded modes, rollback and maintenance             | Load/failover report, runbook exercise, release evidence       |
+| Component                   | Responsibility                                                         | SCF completion evidence                                              |
+| --------------------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| Facilitator                 | `/supported`, `/verify`, `/settle` on testnet and pubnet               | API tests, canonical E2E runs, transaction hashes                    |
+| Bazaar                      | `/discovery/resources`, `/discovery/search`, safe automatic cataloging | Integration, provenance/spoofing and relevance tests                 |
+| MCP server                  | Resource search and paid-call workflow with deterministic errors       | MCP schema/inspector tests and reference integration                 |
+| `exact`                     | Canonical Stellar exact scheme via `@x402/stellar`                     | Upstream-compatible conformance results                              |
+| `upto`                      | Stellar network spec and implementation proposed upstream              | Reviewable spec, implementation, tests and upstream discussion       |
+| SDK helpers                 | Seller metadata and buyer/agent integration helpers                    | Runnable quickstart and automated tests                              |
+| AIFP-1 merchant profile     | Merchant pricing and non-custodial USDC settlement reference flow      | Public testnet/pubnet transactions, split verification and E2E tests |
+| Fermah Pay interoperability | Optional buyer-account and billing-state interface integration         | Contract tests and interoperability evidence; no core dependency     |
+| Examples                    | AIFP-1 merchant flow and MCP-driven paying agent                       | Two end-to-end examples                                              |
+| Operations                  | Monitoring, SLOs, degraded modes, rollback and maintenance             | Load/failover report, runbook exercise, release evidence             |
 
 ## Architecture
 
