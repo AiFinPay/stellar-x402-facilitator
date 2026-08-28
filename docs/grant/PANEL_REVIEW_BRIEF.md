@@ -4,6 +4,7 @@ This page is the fastest route through the AiFinPay Stellar x402 Facilitator sub
 
 ## Review snapshot
 
+<!-- prettier-ignore -->
 | Evaluation area              | AiFinPay position                                                                                                                                                                                          | Primary evidence                                                                                                                         |
 | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | **Ecosystem value**          | Open-source, self-hostable Stellar x402 facilitator plus Bazaar discovery, MCP tooling, AIFP-1 merchant monetization reference flow, planned Fermah Pay interoperability and reusable conformance evidence | [`SCF45_APPLICATION.md`](SCF45_APPLICATION.md) · [`RFP_COMPLIANCE_MATRIX.md`](RFP_COMPLIANCE_MATRIX.md)                                  |
