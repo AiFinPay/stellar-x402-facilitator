@@ -6,7 +6,7 @@ This page is the fastest route through the AiFinPay Stellar x402 Facilitator sub
 
 | Evaluation area              | AiFinPay position                                                                                                                                                                            | Primary evidence                                                                                                                         |
 | ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| **Ecosystem value**          | Open-source, self-hostable Stellar x402 facilitator plus Bazaar discovery, MCP tooling and reusable conformance evidence                                                                     | [`SCF45_APPLICATION.md`](SCF45_APPLICATION.md) · [`RFP_COMPLIANCE_MATRIX.md`](RFP_COMPLIANCE_MATRIX.md)                                  |
+| **Ecosystem value**          | Open-source, self-hostable Stellar x402 facilitator plus Bazaar discovery, MCP tooling, AIFP-1 merchant monetization reference flow, planned Fermah Pay interoperability and reusable conformance evidence                                                                     | [`SCF45_APPLICATION.md`](SCF45_APPLICATION.md) · [`RFP_COMPLIANCE_MATRIX.md`](RFP_COMPLIANCE_MATRIX.md)                                  |
 | **Technical implementation** | Canonical `@x402/stellar` integration, explicit testnet/pubnet profiles, isolated signer boundary, durable idempotency, Bazaar/MCP/SDK layer, production observability and security controls | [`../ARCHITECTURE.md`](../ARCHITECTURE.md) · [`../SECURITY_MODEL.md`](../SECURITY_MODEL.md) · [`../THREAT_MODEL.md`](../THREAT_MODEL.md) |
 | **Team**                     | Four named delivery owners with explicit responsibilities plus finance governance; 32 award-funded person-weeks                                                                              | [`TEAM.md`](TEAM.md) · [`../../MAINTAINERS.md`](../../MAINTAINERS.md)                                                                    |
 | **Budget feasibility**       | Fixed **USD 90,000** request; USD 82,000 labor + capped USD 8,000 direct infrastructure; no marketing, incorporation, past-work reimbursement or separate Audit Bank fees                    | [`BUDGET.md`](BUDGET.md)                                                                                                                 |
@@ -22,12 +22,15 @@ The award funds future Stellar-specific implementation of:
 - safe signing/sequencing boundary, idempotency and transaction evidence;
 - Bazaar-compatible resource catalog, provenance controls and natural-language discovery;
 - MCP discovery/payment interface and TypeScript SDK helpers;
+- an AIFP-1 merchant reference integration for machine-readable pricing and non-custodial USDC settlement to a merchant-controlled Stellar account;
+- an AIFP-2 application profile for routing, policy and verifiable receipts over canonical x402;
+- planned, optional Fermah Pay buyer-account and billing-state interoperability with no core delivery dependency;
 - two runnable end-to-end integrations;
 - Stellar `upto` specification/implementation contribution proposed upstream;
 - testnet/pubnet conformance, replay/negative tests, load/failover evidence and public transaction hashes;
 - production monitoring, SLO/degraded-mode/rollback runbooks, SBOM/license controls and Audit Bank remediation.
 
-Batch settlement, authorization-capture, unrelated AiFinPay protocol expansion and marketing are outside this award.
+Batch settlement, authorization-capture, unrelated AiFinPay protocol expansion and marketing are outside this award. The AIFP-1 reference flow and AIFP-2 application profile do not replace canonical `@x402/stellar` settlement or add proprietary required wire fields.
 
 ## Why the implementation is credible
 
@@ -71,7 +74,7 @@ The schedule and budget are intentionally coupled: 32 named person-weeks fund th
 
 1. **Award setup — USD 9,000:** final implementation baseline, CI, interfaces, backlog and controls.
 2. **MVP — USD 18,000:** canonical endpoints, first testnet payment, initial Bazaar/MCP/SDK flow and reproducible example.
-3. **Testnet — USD 27,000:** full testnet conformance, discovery/search controls, negative/replay/load evidence, two integrations and reviewable `upto` contribution.
+3. **Testnet — USD 27,000:** full testnet conformance, discovery/search controls, negative/replay/load evidence, AIFP-1 merchant settlement flow, optional Fermah Pay interoperability evidence, two integrations and reviewable `upto` contribution.
 4. **Mainnet — USD 36,000:** controlled pubnet release, self-host package, production monitoring/runbooks, audit remediation and final evidence register.
 
 ## Reviewer verification principle
