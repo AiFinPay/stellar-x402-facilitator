@@ -32,6 +32,28 @@ Stellar already has conformant `exact` settlement through [`@x402/stellar`](http
 
 This project builds on canonical packages instead of reimplementing solved settlement logic.
 
+## AiFinPay payment profiles on Stellar
+
+The facilitator remains canonical x402 infrastructure. AiFinPay protocol profiles use that infrastructure without adding proprietary required fields to the wire format.
+
+| Profile | User and purpose | Planned Stellar outcome |
+| --- | --- | --- |
+| **AIFP-1 merchant monetization** | Websites, APIs, MCP servers and digital services price access for autonomous agents | The agent pays the quoted USDC amount and settlement reaches the merchant-controlled Stellar account through a non-custodial flow. The AiFinPay merchant route uses the published gross price: 99% to the merchant, 1% to AiFinPay and 0% creator/referral fee. |
+| **AIFP-2 agent payments** | Autonomous agents pay for APIs, MCP tools, data, compute and other digital resources | AiFinPay routing, policy and receipt helpers operate over canonical x402 and `@x402/stellar`. The provider price is preserved; the current AiFinPay fee for this route is 0%, with network costs handled separately. |
+
+AIFP-1 is included as a merchant reference integration and acceptance flow, not as a replacement for canonical Stellar settlement. AIFP-2 is an AiFinPay application profile over canonical x402 compatibility. No production Stellar deployment is claimed until the public acceptance gates below are satisfied.
+
+## Planned Fermah Pay interoperability
+
+AiFinPay and Fermah Pay have aligned on a planned technical integration within the Stellar x402 ecosystem:
+
+- AiFinPay provides the facilitator, Bazaar discovery layer, MCP interface and SDK helpers;
+- Fermah Pay provides a complementary buyer-account and billing-state layer, including prepaid USDC balances, recurring billing and settlement-state management through an x402-compatible interface;
+- the AiFinPay facilitator may use the Fermah Pay settlement interface for balance checks and per-request settlement;
+- Fermah Pay plans to reference AiFinPay Bazaar for seller and paid-resource discovery.
+
+The projects remain independent, with separate teams, technical scopes, deliverables, budgets and grant requests. The AiFinPay facilitator must remain fully deliverable and testable without Fermah Pay receiving an SCF award or being available.
+
 ## Planned product surface
 
 | Component   | Responsibility                                                         | SCF completion evidence                                        |
@@ -42,7 +64,9 @@ This project builds on canonical packages instead of reimplementing solved settl
 | `exact`     | Canonical Stellar exact scheme via `@x402/stellar`                     | Upstream-compatible conformance results                        |
 | `upto`      | Stellar network spec and implementation proposed upstream              | Reviewable spec, implementation, tests and upstream discussion |
 | SDK helpers | Seller metadata and buyer/agent integration helpers                    | Runnable quickstart and automated tests                        |
-| Examples    | Paid discoverable API and MCP-driven paying agent                      | Two end-to-end examples                                        |
+| AIFP-1 merchant profile | Merchant pricing and non-custodial USDC settlement reference flow | Public testnet/pubnet transactions, split verification and E2E tests |
+| Fermah Pay interoperability | Optional buyer-account and billing-state interface integration | Contract tests and interoperability evidence; no core dependency |
+| Examples    | AIFP-1 merchant flow and MCP-driven paying agent                       | Two end-to-end examples                                        |
 | Operations  | Monitoring, SLOs, degraded modes, rollback and maintenance             | Load/failover report, runbook exercise, release evidence       |
 
 ## Architecture
@@ -60,6 +84,8 @@ flowchart TD
     B --> D["Catalog database and index"]
     F --> O["Logs, metrics and traces"]
     B --> O
+    S --> H["Merchant-controlled Stellar account"]
+    P["Fermah Pay interface (planned)"] <--> F
 ```
 
 The facilitator validates canonical x402 v2 payloads, applies operational/idempotency controls, delegates Stellar-specific verification and settlement to canonical packages, and returns deterministic machine-readable results. Bazaar indexes verified public resource metadata without becoming the authority over seller pricing. MCP and SDK helpers expose discovery/payment workflows to agent runtimes without storing agent private keys.
@@ -97,6 +123,8 @@ docs/grant/            SCF #45 panel-review, budget, team, milestone and evidenc
 
 The Stellar facilitator is new SCF work. Relevant prior engineering is public and is not billed as a grant deliverable:
 
+- <https://github.com/AiFinPay/AIFP-1> — merchant-side AI-traffic monetization protocol and reference profile;
+- <https://github.com/AiFinPay/AIFP-2> — AiFinPay agent-payment routing, policy and receipt profile;
 - <https://github.com/AiFinPay/sdk> — agent payment SDK and MCP tooling;
 - <https://github.com/AiFinPay/evm-contract> — public smart-contract infrastructure;
 - <https://aifinpay.io> — current product/protocol surface.
