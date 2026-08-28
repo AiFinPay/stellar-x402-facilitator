@@ -16,6 +16,9 @@ Dates begin when an SCF award is accepted and the implementation team is availab
 - MCP search and paid-call tools;
 - draft `scheme_upto_stellar.md` and reference implementation path;
 - channel-account throughput mode and trustline onboarding;
+- AIFP-1 merchant pricing, non-custodial USDC settlement, route-split and receipt/access reference flow;
+- AIFP-2 routing/policy/receipt helpers over canonical x402;
+- optional Fermah Pay adapter contract tests and degraded-mode behavior;
 - required testnet E2E examples and conformance report.
 
 ## Tranche 3 — Mainnet and production acceptance, weeks 7–16
@@ -24,7 +27,8 @@ Dates begin when an SCF award is accepted and the implementation team is availab
 - exact and approved `upto` behavior on supported networks;
 - security review and remediation;
 - role-based developer guide and upstream contributions;
-- two production-grade examples;
+- two production-grade examples, including the AIFP-1 merchant monetization flow;
+- Fermah Pay interoperability evidence where the external interface is available, without blocking core acceptance;
 - monitoring, operational runbooks, 99%+ availability target, and degraded modes;
 - stabilization evidence and final conformance report by week 16.
 
