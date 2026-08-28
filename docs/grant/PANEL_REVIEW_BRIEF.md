@@ -47,12 +47,12 @@ The project remains deliberately dependent on canonical Stellar/x402 packages ra
 
 ## Team and capacity
 
-| Owner            | Delivery responsibility                                                                                               | Allocation      |
+| Owner            | Delivery responsibility                                                                                               |      Allocation |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------- | --------------: |
-| Pavlo Bolhar     | Facilitator/backend, deployment, observability, load/failover validation and production release                       | 8 person-weeks  |
+| Pavlo Bolhar     | Facilitator/backend, deployment, observability, load/failover validation and production release                       |  8 person-weeks |
 | Syed Hassan      | Stellar/x402 integration, conformance, payment-security logic, transaction evidence and `upto` contribution           | 10 person-weeks |
-| Pavel Svizinskiy | Bazaar discovery/search, provenance controls, MCP, SDK helpers, abuse/relevance evaluation and reference integrations | 9 person-weeks  |
-| Dmitry Buhaienko | Product acceptance, technical documentation, release evidence and SCF reporting                                       | 5 person-weeks  |
+| Pavel Svizinskiy | Bazaar discovery/search, provenance controls, MCP, SDK helpers, abuse/relevance evaluation and reference integrations |  9 person-weeks |
+| Dmitry Buhaienko | Product acceptance, technical documentation, release evidence and SCF reporting                                       |  5 person-weeks |
 
 **Total: 32 person-weeks over eight weeks = four FTE on average.**
 
@@ -60,13 +60,13 @@ Iryna Zavorotnia provides budget governance as internal support and is not charg
 
 ## USD 90,000 budget logic
 
-| Workstream                                                     | Amount         |
+| Workstream                                                     |         Amount |
 | -------------------------------------------------------------- | -------------: |
-| Facilitator/backend/production operations and reliability      | USD 22,000     |
-| Stellar/x402 integration, conformance and transaction evidence | USD 25,000     |
-| Bazaar discovery/search, MCP/SDK and reference integrations    | USD 22,500     |
-| Product/docs/release/SCF evidence                              | USD 12,500     |
-| Direct development and validation infrastructure, capped       | USD 8,000      |
+| Facilitator/backend/production operations and reliability      |     USD 22,000 |
+| Stellar/x402 integration, conformance and transaction evidence |     USD 25,000 |
+| Bazaar discovery/search, MCP/SDK and reference integrations    |     USD 22,500 |
+| Product/docs/release/SCF evidence                              |     USD 12,500 |
+| Direct development and validation infrastructure, capped       |      USD 8,000 |
 | **Total**                                                      | **USD 90,000** |
 
 The schedule and budget are intentionally coupled: 32 named person-weeks fund the labor plan, infrastructure is separately capped, and 90% of the award is attached to working MVP/testnet/pubnet evidence rather than proposal documents.
