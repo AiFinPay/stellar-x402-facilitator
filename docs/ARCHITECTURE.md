@@ -10,6 +10,8 @@
 6. Horizontal service scaling and parallel Stellar submission.
 7. Minimal data collection and deterministic machine-readable errors.
 8. Clean upstream contribution path for the Stellar `upto` scheme.
+9. AIFP-1 merchant monetization reference flow without altering canonical x402 wire requirements.
+10. Optional Fermah Pay interoperability without making core delivery depend on an external award or service.
 
 ## Logical components
 
@@ -25,6 +27,8 @@ flowchart TD
     XS --> CH["Channel scheduler and fee bump"]
     CH --> RPC["Stellar RPC"]
     RPC --> NET["Testnet or pubnet"]
+    NET --> MER["Merchant-controlled Stellar account"]
+    FP["Fermah Pay interface - planned"] <--> API
 
     AG["Agent runtime"] --> MCP["MCP server"]
     MCP --> DZ["Bazaar API"]
@@ -59,6 +63,22 @@ Repeats all security-critical verification, claims an idempotency key, selects a
 - Enforce Soroban transaction resource and fee ceilings before submission.
 - Avoid sequence bottlenecks with a pool of isolated channel accounts and a separate fee-bump signer.
 - Do not introduce an on-chain registry in v1. If a registry is later proposed, it requires a TTL/rent strategy and a separate ADR.
+
+## AiFinPay profiles and partner interoperability
+
+### AIFP-1 merchant reference flow
+
+A merchant publishes canonical resource metadata, destination, asset and price. An autonomous agent receives an HTTP 402 response, pays through the Stellar facilitator and receives a verifiable settlement result before resource access. The merchant controls the paid resource and destination account. The reference route verifies the published gross-price split of 99% to the merchant, 1% to AiFinPay and 0% creator/referral fee.
+
+This is an application/reference profile over canonical x402. It does not change required wire fields or claim a completed production Stellar deployment.
+
+### AIFP-2 application profile
+
+AIFP-2 supplies AiFinPay routing, wallet-policy and receipt helpers around canonical x402 flows. The provider price remains intact; the current AiFinPay route fee is 0% and network costs are separate. Stellar verification and settlement remain delegated to `@x402/stellar`.
+
+### Fermah Pay interoperability
+
+Fermah Pay is a planned optional integration for buyer accounts, prepaid USDC balances, recurring billing and settlement-state management through an x402-compatible interface. The facilitator may request balance checks and per-request settlement from that interface. The adapter is isolated behind a capability boundary and must fail without affecting canonical direct-wallet flows. AiFinPay delivery and acceptance do not depend on Fermah Pay receiving an SCF award.
 
 ## Bazaar design
 
