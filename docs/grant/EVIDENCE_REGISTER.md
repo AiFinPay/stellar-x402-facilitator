@@ -11,7 +11,7 @@ This register separates evidence that already exists before an award from eviden
 | E-005 | Discovery ranking is implemented | `packages/bazaar/src/search.ts` | Implemented |
 | E-006 | Search quality has a defined benchmark and floors | `benchmark.ts`, `evaluate.ts`; Recall@5 >= 0.90 and NDCG@5 >= 0.85 | CI-gated |
 | E-007 | Search behavior is unit tested | `packages/bazaar/src/search.test.ts` | CI-gated |
-| E-008 | Public static security analysis runs | `.github/workflows/codeql.yml` | CI-gated |
+| E-008 | Public static security analysis runs | Repository CodeQL Default Setup / PR code-scanning check | CI-gated |
 | E-009 | Revised budget makes Bazaar the largest workstream | `docs/grant/BUDGET.md` | Available |
 | E-010 | Milestones use reproducible acceptance gates | `docs/grant/MILESTONES.md` | Available |
 | E-100 | Persistent Bazaar registration and provenance controls | Integration and spoofing tests | Future deliverable |
