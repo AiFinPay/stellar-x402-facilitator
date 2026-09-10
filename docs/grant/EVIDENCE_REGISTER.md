@@ -1,38 +1,32 @@
 # Evidence register
 
-This register is the reviewer index for reproducible project claims. Evidence is divided into **available pre-award evidence** and **implementation evidence required to complete future milestones**.
+This register separates evidence that already exists before an award from evidence that remains a future milestone.
 
-| Evidence ID | Claim or gate                                                                          | Artifact                                                                                             | Network/version                      | Status                                    |
-| ----------- | -------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------ | ----------------------------------------- |
-| E-001       | Architecture and system boundary prepared                                              | `docs/ARCHITECTURE.md` and ADRs                                                                      | Design baseline                      | **Available**                             |
-| E-002       | Security and trust risks identified                                                    | `docs/SECURITY_MODEL.md`, `docs/THREAT_MODEL.md`                                                     | Design baseline                      | **Available**                             |
-| E-003       | SCF #45 RFP coverage mapped                                                            | `docs/grant/RFP_COMPLIANCE_MATRIX.md`                                                                | SCF #45                              | **Available**                             |
-| E-004       | Repository uses a permissive license and dependency policy                             | `LICENSE`, `DEPENDENCY_POLICY.md`                                                                    | Apache-2.0                           | **Available**                             |
-| E-005       | Named technical implementation team and review ownership                               | `docs/grant/TEAM.md`, `MAINTAINERS.md`                                                               | Panel-review baseline                | **Available**                             |
-| E-006       | USD 90,000 budget mapped to 32 person-weeks and direct infrastructure                  | `docs/grant/BUDGET.md`                                                                               | Panel-review baseline                | **Available**                             |
-| E-007       | Milestones have named owners and objective acceptance gates                            | `docs/grant/MILESTONES.md`                                                                           | Eight-week delivery plan             | **Available**                             |
-| E-008       | Material risks have named owners and observable triggers                               | `docs/grant/RISK_REGISTER.md`                                                                        | Delivery baseline                    | **Available**                             |
-| E-009       | Existing AiFinPay execution foundation is publicly inspectable                         | `https://github.com/AiFinPay/sdk`, `https://github.com/AiFinPay/evm-contract`, `https://aifinpay.io` | Existing public work; not SCF-billed | **Available**                             |
-| E-010       | Reviewer summary ties technical implementation, team, budget and deliverables together | `docs/grant/PANEL_REVIEW_BRIEF.md`                                                                   | SCF #45 panel review                 | **Available**                             |
-| E-100       | Canonical client completes testnet settlement                                          | CI run, logs, exact revision and public transaction hash                                             | `stellar:testnet`                    | **Required for implementation milestone** |
-| E-101       | Canonical client completes pubnet settlement                                           | CI run, redacted logs, exact revision and public transaction hash                                    | `stellar:pubnet`                     | **Required for implementation milestone** |
-| E-102       | Rejection-reason and negative-case conformance                                         | Automated negative test report                                                                       | Both networks                        | **Required for implementation milestone** |
-| E-103       | Bazaar discovery conformance and provenance controls                                   | Integration report, ownership/spoofing tests and demo                                                | Release candidate                    | **Required for implementation milestone** |
-| E-104       | MCP deterministic schemas/errors and equivalent resource identity                      | MCP inspector output and automated tests                                                             | Release candidate                    | **Required for implementation milestone** |
-| E-105       | Under-one-hour onboarding                                                              | Clean-room recording/log, exact setup steps and timings                                              | Tagged release                       | **Required for implementation milestone** |
-| E-106       | Reliability, load and degraded-mode behavior                                           | Load/failover report, capacity limits and dashboard export                                           | Production candidate                 | **Required for implementation milestone** |
-| E-107       | Security review and remediation                                                        | Audit Bank scope, findings disposition and remediation evidence                                      | Tagged release                       | **Required for implementation milestone** |
-| E-108       | Stellar `upto` upstream contribution                                                   | x402 TSC issue/PR or equivalent review record, spec, implementation and tests                        | Pinned upstream revision             | **Required for implementation milestone** |
-| E-109       | Role-based Stellar integration documentation                                           | Public documentation contribution/PR/status                                                          | Tagged release                       | **Required for implementation milestone** |
-| E-110       | Self-hostable production release                                                       | Tagged artifacts, SBOM/license report, deployment and rollback exercise                              | `stellar:pubnet`                     | **Required for implementation milestone** |
+| ID | Claim | Reproducible evidence | Status |
+| --- | --- | --- | --- |
+| E-001 | Runnable Stellar facilitator exists | `packages/facilitator/src/index.ts` and `packages/facilitator/src/cli.ts` | Implemented |
+| E-002 | Canonical x402 Stellar package is used | Pinned `@x402/core@2.25.0` and `@x402/stellar@2.25.0` in `package.json` | Implemented |
+| E-003 | A real testnet settlement can be generated without repository secrets | `tests/e2e/stellar-testnet.ts` creates ephemeral accounts, uses Friendbot, verifies and settles | Implemented; CI-gated |
+| E-004 | Settlement evidence is independently checkable | CI writes transaction hash, ledger and Stellar Expert URL to `artifacts/stellar-testnet-settlement.json` | CI-gated |
+| E-005 | Discovery ranking is implemented | `packages/bazaar/src/search.ts` | Implemented |
+| E-006 | Search quality has a defined benchmark and floors | `benchmark.ts`, `evaluate.ts`; Recall@5 >= 0.90 and NDCG@5 >= 0.85 | CI-gated |
+| E-007 | Search behavior is unit tested | `packages/bazaar/src/search.test.ts` | CI-gated |
+| E-008 | Public static security analysis runs | Repository CodeQL Default Setup / PR code-scanning check | CI-gated |
+| E-009 | Revised budget makes Bazaar the largest workstream | `docs/grant/BUDGET.md` | Available |
+| E-010 | Milestones use reproducible acceptance gates | `docs/grant/MILESTONES.md` | Available |
+| E-100 | Persistent Bazaar registration and provenance controls | Integration and spoofing tests | Future deliverable |
+| E-101 | MCP discovery/payment interface | MCP inspector output and automated tests | Future deliverable |
+| E-102 | Load/failover production thresholds | Reproducible load scenario, fixed pass/fail thresholds and public CI/report output | Future deliverable |
+| E-103 | Independent clean-room onboarding | Third-party timer/log against a tagged release | Future deliverable |
+| E-104 | External security review | Reviewer record and remediation disposition | Future deliverable |
+| E-105 | Stellar pubnet settlement | Public transaction hash tied to exact tagged revision | Future deliverable |
+| E-106 | Self-hostable production release | Tagged artifact, SBOM, deployment and rollback evidence | Future deliverable |
 
-## Evidence quality rules
+## Evidence rules
 
-- Transaction evidence includes the exact software revision and network; a hash without reproducible context is insufficient.
-- Test reports identify the tested version and expected/actual result.
-- Security evidence never publishes private keys, reusable authorization payloads or embargoed findings.
-- Search/discovery evidence includes abuse and spoofing cases, not only successful queries.
-- A future deliverable remains marked as required until the linked artifact is independently reproducible.
-- Prior AiFinPay work is labeled as prior work and is never presented as a completed SCF-funded milestone.
-
-Never put private keys, authorization payloads, personal data, internal endpoints or embargoed security findings in public evidence.
+- A transaction hash must include the exact network and source revision.
+- A benchmark must include the committed query set, metric definition and numeric floor.
+- A load/security/onboarding claim cannot pass only because the implementation team wrote a report saying it passed.
+- Future items remain marked future until their linked evidence exists.
+- Pre-award work is never billed again as a grant deliverable.
+- Secrets, reusable authorizations and confidential partner data never appear in public evidence.

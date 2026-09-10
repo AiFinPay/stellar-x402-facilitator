@@ -5,18 +5,69 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 permissions:
   contents: read
+  pull-requests: write
 
 jobs:
-  documentation:
+  quality:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npm run check
+      - run: npm install --no-audit --no-fund
+      - run: npm run lint:md
+      - run: npm run typecheck
+      - run: npm run test
+      - run: npm run evaluate:discovery
+      - uses: actions/upload-artifact@v4
+        with:
+          name: discovery-evaluation
+          path: artifacts/discovery-evaluation.json
+
+  stellar-testnet-settlement:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --no-audit --no-fund
+      - run: npm run test:e2e:stellar
+      - id: evidence
+        shell: bash
+        run: |
+          node - <<'NODE'
+          const fs = require("fs");
+          const data = JSON.parse(
+            fs.readFileSync("artifacts/stellar-testnet-settlement.json", "utf8")
+          );
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `tx_hash=${data.transactionHash}\n`);
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `explorer_url=${data.explorerUrl}\n`);
+          fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, [
+            "## Stellar x402 settlement evidence",
+            "",
+            `- Transaction: \`${data.transactionHash}\``,
+            `- Explorer: ${data.explorerUrl}`,
+            `- Ledger: ${data.ledger}`,
+            `- Successful: ${data.successful}`,
+            ""
+          ].join("\n"));
+          NODE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stellar-testnet-settlement
+          path: artifacts/stellar-testnet-settlement.json
+      - name: Comment settlement evidence on PR
+        if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          TX_HASH: ${{ steps.evidence.outputs.tx_hash }}
+          EXPLORER_URL: ${{ steps.evidence.outputs.explorer_url }}
+        run: |
+          gh pr comment "$PR_NUMBER" --body "Stellar testnet x402 settlement passed. Transaction: \`$TX_HASH\` — $EXPLORER_URL"

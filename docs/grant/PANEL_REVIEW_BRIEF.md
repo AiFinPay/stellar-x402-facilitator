@@ -1,4 +1,4 @@
-# SCF #45 panel review brief
+> [!WARNING]\n> **Historical SCF #45 material. Do not use for resubmission.** The corrected implementation baseline, budget, milestones, evidence model and team are in [`SCF_RESUBMISSION.md`](SCF_RESUBMISSION.md).\n\n# SCF #45 panel review brief
 
 This page is the fastest route through the AiFinPay Stellar x402 Facilitator submission for reviewers evaluating **ecosystem value, technical implementation, team, budget feasibility and deliverables**.
 
