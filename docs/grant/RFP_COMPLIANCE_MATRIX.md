@@ -14,7 +14,7 @@ This matrix maps the prior x402 Facilitator with Bazaar Discovery feedback to th
 | Defined benchmark | Published held-out corpus/query set | `packages/bazaar/src/benchmark.ts` | Implemented |
 | Metric floor | Recall@5 >= 0.90, NDCG@5 >= 0.85 | `packages/bazaar/src/evaluate.ts` | CI-gated |
 | Objective tranche gates | CI, public transaction, tagged artifact or independent reviewer evidence | `MILESTONES.md`, `EVIDENCE_REGISTER.md` | Corrected |
-| Static security analysis | GitHub CodeQL | `.github/workflows/codeql.yml` | CI-gated |
+| Static security analysis | GitHub CodeQL Default Setup | PR code-scanning check | CI-gated |
 | Persistent catalog and provenance | Ownership verification, spoofing controls and durable storage | Future implementation | Planned |
 | MCP discovery server | Versioned deterministic MCP surface | Future implementation | Planned |
 | Pubnet evidence | Controlled mainnet settlement tied to tagged revision | Future implementation | Planned |
