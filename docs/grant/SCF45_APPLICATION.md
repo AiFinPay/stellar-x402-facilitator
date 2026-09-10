@@ -1,4 +1,4 @@
-# SCF #45 Build Award — panel review reference
+> [!WARNING]\n> **Historical SCF #45 material. Do not use for resubmission.** The corrected implementation baseline, budget, milestones, evidence model and team are in [`SCF_RESUBMISSION.md`](SCF_RESUBMISSION.md).\n\n# SCF #45 Build Award — panel review reference
 
 This document is the repository-side reference for AiFinPay's SCF #45 Build Award submission. The SCF portal submission remains authoritative if wording differs. This file is maintained so reviewers can quickly inspect the technical implementation plan, team, USD 90,000 budget, milestones and evidence model in one place.
 
